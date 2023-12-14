@@ -3,4 +3,18 @@
     <string name="SplashScreenQuote">Your parking solution is just a tap away. Welcome to a world of easy parking!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="onBoarding1Quote">Navigate, Search and Go.</string>
+    <string name="skip">Skip</string>
+    <string name="NextButton">Next</string>
+    <string name="onBoarding2Quote1">Seamless parking at your fingertips</string>
+    <string name="onBoarding2Quote2">" Join us on the road to effortless parking."</string>
+    <string name="quick_navig">
+            Quick Navigation.
+        </string>
+    <string name="easy_paymen">
+            Easy Payments.
+        </string>
+    <string name="get_started">
+                Get Started
+            </string>
 </resources>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
 
@@ -11,26 +12,41 @@
         android:id="@+id/imageView"
         android:layout_width="824dp"
         android:layout_height="411dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/img2" />
+        app:layout_constraintTop_toBottomOf="@+id/onBoarding2Quote"
+        app:srcCompat="@drawable/vector2" />
 
     <TextView
-        android:id="@+id/onBoarding1Quote"
+        android:id="@+id/onBoarding2Quote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans_semibold"
-        android:padding="10dp"
-        android:text="@string/onBoarding1Quote"
-        android:textAlignment="center"
+        android:padding="15dp"
+        android:text="@string/onBoarding2Quote1"
+        android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/onBoarding2Quote2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_semibold"
+        android:padding="15dp"
+        android:text="@string/onBoarding2Quote2"
+        android:textAlignment="textEnd"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="SplashScreenQuote">Your parking solution is just a tap away.\nWelcome to the world of easy parking!</string>
+    <string name="onBoarding1Quote">Navigate, Search Park and Go.</string>
+    <string name="skip">Skip</string>
+    <string name="NextButton">Next</string>
+    <string name="onBoarding2Quote1">Seamless parking at your fingertips</string>
+    <string name="onBoarding2Quote2">" Join us on the road to effortless parking."</string>
+    <string name="quick_navig">
+            Quick Navigation.
+        </string>
+    <string name="easy_paymen">
+            Easy Payments.
+        </string>
+    <string name="get_started">
+                Get Started
+            </string>
 </resources>
