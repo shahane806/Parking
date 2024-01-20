@@ -2,7 +2,8 @@
     <string name="app_name">Parking</string>
     <string name="SplashScreenQuote">Your parking solution is just a tap away. Welcome to a world of easy parking!</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="forgetPasswordSuccessfully">Password Changed Successfully</string>
+    <string name="forgetPasswordGoToLoginScreen">Click Here, Go to Login Screen</string>
     <string name="onBoarding1Quote">Navigate, Search and Go.</string>
     <string name="skip">Skip</string>
     <string name="NextButton">Next</string>
@@ -17,4 +18,12 @@
     <string name="get_started">
                 Get Started
             </string>
+    <string name="create_new_">"        Create New Account\n"</string>
+    <string name="forget_pass">" Forget Password"</string>
+    <string name="login">Login</string>
+    <string name="loginByGoogle">Login By Google</string>
+    <string name="Submit">Submit Information</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

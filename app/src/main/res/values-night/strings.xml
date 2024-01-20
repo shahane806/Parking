@@ -15,4 +15,9 @@
     <string name="get_started">
                 Get Started
             </string>
+    <string name="create_new_">"        Create New Account\n"</string>
+    <string name="forget_pass">" Forget Password"</string>
+    <string name="login">Login</string>
+    <string name="loginByGoogle">Login By Google</string>
+    <string name="Submit">Submit Information</string>
 </resources>

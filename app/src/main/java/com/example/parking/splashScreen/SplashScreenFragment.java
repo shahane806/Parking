@@ -1,4 +1,4 @@
-package com.example.parking;
+package com.example.parking.splashScreen;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.parking.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link onBoardingFragment1#newInstance} factory method to
+ * Use the {@link SplashScreenFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class onBoardingFragment1 extends Fragment {
+public class SplashScreenFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class onBoardingFragment1 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public onBoardingFragment1() {
+    public SplashScreenFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class onBoardingFragment1 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment onBoardingFragment1.
+     * @return A new instance of fragment SplashScreenFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static onBoardingFragment1 newInstance(String param1, String param2) {
-        onBoardingFragment1 fragment = new onBoardingFragment1();
+    public static SplashScreenFragment newInstance(String param1, String param2) {
+        SplashScreenFragment fragment = new SplashScreenFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,7 +61,8 @@ public class onBoardingFragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_on_boarding1, container, false);
-        return v;
+        View view =  inflater.inflate(R.layout.fragment_splash_screen, container, false);
+        return  view;
+
     }
 }

@@ -1,13 +1,21 @@
 package com.example.parking.AuthenticationModule;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.example.parking.Home.fragmentHome;
 import com.example.parking.R;
 
 /**
@@ -57,10 +65,43 @@ public class LoginFragment extends Fragment {
         }
     }
 
+    TextView CreateAccount , ForgetPassword ;
+    View v ;
+    RelativeLayout login;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        v  =  inflater.inflate(R.layout.fragment_login, container, false);
+
+        CreateAccount = v.findViewById(R.id.create_new_);
+        ForgetPassword = v.findViewById(R.id.forget_pass);
+        login = v.findViewById(R.id.button_login);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction home = getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.loginFragment,new fragmentHome());
+                home.commit();
+            }
+        });
+      CreateAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v1) {
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.loginFragment,new CreateNewAccountFragment());
+                fragmentTransaction.commit();
+        }
+        });
+      ForgetPassword.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              FragmentTransaction forgetPasswordFragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction()
+                      .replace(R.id.loginFragment,new forgetPasswordWindowFirst());
+              forgetPasswordFragmentTransaction.commit();
+          }
+      });
+        return v;
     }
+
 }

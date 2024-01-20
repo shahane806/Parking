@@ -1,14 +1,12 @@
 package com.example.parking.splashScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
-import com.example.parking.MainActivity;
+import com.example.parking.Main.MainActivity;
 import com.example.parking.R;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -80,6 +78,4 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onRestart();
     }
 
-    @Override
-    public void onBackPressed() {}
 }
