@@ -1,16 +1,18 @@
 package com.example.parking.AuthenticationModule;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
-
+import com.example.parking.AlertHandling.AlertHandling;
+import com.example.parking.DatabaseHandler.DBHandler;
 import com.example.parking.R;
 
 /**
@@ -59,21 +61,71 @@ public class CreateNewAccountFragment2 extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     RelativeLayout submitInformation;
+
+    public SQLiteDatabase db;
+    public EditText aadhaarEditText, new_password_edit_text, confirm_password_edit_text, vehicle_model_edit_text, vehicle_number_edit_text;
+    public String aadhaar, new_password, confirm_password, vehicle_model, vehicle_number;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_create_new_account2, container, false);
+        View v = inflater.inflate(R.layout.fragment_create_new_account2, container, false);
         submitInformation = v.findViewById(R.id.SubmitButton);
+        aadhaarEditText = v.findViewById(R.id.aadhaar);
+        new_password_edit_text = v.findViewById(R.id.createAccountTwoNewPassword);
+        confirm_password_edit_text = v.findViewById(R.id.createAccountTwoConfirmPassword);
+        vehicle_model_edit_text = v.findViewById(R.id.vehicleModel);
+        vehicle_number_edit_text = v.findViewById(R.id.vehicleNumber);
+
+        AlertHandling alertHandling = new AlertHandling(getContext());
+
+
         submitInformation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                Toast.makeText(getContext(),"Your Registration is Successfully Done !",Toast.LENGTH_LONG).show();
-                FragmentTransaction transactionToLoginFragment = getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.loginFragment,new LoginFragment());
-                transactionToLoginFragment.commit();
+            public void onClick(View v) {
+                aadhaar = new_password = confirm_password = vehicle_model = vehicle_number = "";
+                aadhaar = aadhaarEditText.getText().toString();
+                new_password = new_password_edit_text.getText().toString();
+                confirm_password = confirm_password_edit_text.getText().toString();
+                vehicle_model = vehicle_model_edit_text.getText().toString();
+                vehicle_number = vehicle_number_edit_text.getText().toString();
+
+
+                if (aadhaar.equals("") || new_password.equals("") || confirm_password.equals("") || vehicle_model.equals("") || vehicle_number.equals("")) {
+
+
+                    alertHandling.createAccountFragmentAlertHandling();
+                } else {
+                    CreateNewAccount c = new CreateNewAccount();
+                    c.setAadhaar(aadhaar);
+                    c.setNew_password(new_password);
+                    c.setConfirm_password(confirm_password);
+                    c.setVehicle_model(vehicle_model);
+                    c.setVehicle_number(vehicle_number);
+                    DBHandler dbHandler = new DBHandler(getActivity().getApplicationContext());
+                    if (new_password.equals(confirm_password)) {
+                        try {
+                            dbHandler.onCreate(db);
+                            dbHandler.insertIntoAccountTable(c.getName(), c.getPhoneNumber(), c.getAddress(), c.getPan(), c.getAadhaar(),
+                                    c.getNew_password(), c.getConfirm_password(), c.getVehicle_model(), c.getVehicle_number());
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        alertHandling.accountCreatedSuccessfullyAlertHandling();
+                        FragmentTransaction transactionToLoginFragment = getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.loginFragment, new LoginFragment());
+                        transactionToLoginFragment.commit();
+                    } else {
+                        alertHandling.createAccountFragment2AlertHandling();
+                    }
+
+                }
+
+
             }
         });
         return v;

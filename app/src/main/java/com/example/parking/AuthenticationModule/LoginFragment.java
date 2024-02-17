@@ -1,20 +1,17 @@
 package com.example.parking.AuthenticationModule;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.parking.AlertHandling.AlertHandling;
 import com.example.parking.Home.fragmentHome;
 import com.example.parking.R;
 
@@ -72,26 +69,50 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        v  =  inflater.inflate(R.layout.fragment_login, container, false);
+        v = inflater.inflate(R.layout.fragment_login, container, false);
 
         CreateAccount = v.findViewById(R.id.create_new_);
         ForgetPassword = v.findViewById(R.id.forget_pass);
         login = v.findViewById(R.id.button_login);
+        EditText phoneNumber, password;
+        phoneNumber = v.findViewById(R.id.phoneNumber);
+        password = v.findViewById(R.id.password);
+
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction home = getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.loginFragment,new fragmentHome());
-                home.commit();
+                String userName, passWord;
+                userName = String.valueOf(phoneNumber.getText());
+                passWord = String.valueOf(password.getText());
+                AlertHandling alertHandling = new AlertHandling(getContext());
+                CreateNewAccount c = new CreateNewAccount();
+                boolean test = c.checkUserNameAndPassword(getContext(), userName, passWord);
+                if (test) {
+
+                    alertHandling.loginSuccessful();
+                    FragmentTransaction home = getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.loginFragment, new fragmentHome());
+                    home.commit();
+                } else {
+                    if (userName.equals("") || password.equals("")) {
+                        alertHandling.createAccountFragmentAlertHandling();
+                    } else {
+                        alertHandling.checkUserNameAndPasswordAlertHandling();
+                        alertHandling.loginChanceRemaining();
+                    }
+                }
+
             }
         });
       CreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v1) {
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.loginFragment,new CreateNewAccountFragment());
+                        .replace(R.id.loginFragment, new CreateNewAccountFragment());
                 fragmentTransaction.commit();
-        }
+
+            }
         });
       ForgetPassword.setOnClickListener(new View.OnClickListener() {
           @Override

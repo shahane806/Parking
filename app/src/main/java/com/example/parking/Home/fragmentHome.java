@@ -1,14 +1,15 @@
 package com.example.parking.Home;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.parking.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +58,25 @@ public class fragmentHome extends Fragment {
         }
     }
 
+    FloatingActionButton notification;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        notification = view.findViewById(R.id.Notification);
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentTransaction notificationTransaction = getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.loginFragment, new notificationFragment());
+                notificationTransaction.commit();
+            }
+        });
+        return view;
     }
+
+
 }

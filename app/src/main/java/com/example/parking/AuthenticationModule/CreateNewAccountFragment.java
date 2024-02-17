@@ -1,15 +1,16 @@
 package com.example.parking.AuthenticationModule;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-
+import com.example.parking.AlertHandling.AlertHandling;
 import com.example.parking.R;
 
 /**
@@ -58,19 +59,49 @@ public class CreateNewAccountFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     RelativeLayout createAccountFragmentNextButton;
+    EditText nameEditText, phoneNumberEditText, addressEditText, panEditText;
+    String name, phoneNumber, address, pan;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_create_new_account, container, false);
-        createAccountFragmentNextButton  = v.findViewById(R.id.CreateAccountNextButton);
+        View v = inflater.inflate(R.layout.fragment_create_new_account, container, false);
+        createAccountFragmentNextButton = v.findViewById(R.id.CreateAccountNextButton);
+        nameEditText = v.findViewById(R.id.name);
+        phoneNumberEditText = v.findViewById(R.id.phoneNumber);
+        addressEditText = v.findViewById(R.id.address);
+        panEditText = v.findViewById(R.id.PAN);
+
+
         createAccountFragmentNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                 FragmentTransaction createAccountTwo = getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.loginFragment,new CreateNewAccountFragment2());
-                createAccountTwo.commit();
+            public void onClick(View v) {
+                name = phoneNumber = address = pan = "";
+
+                name = nameEditText.getText().toString();
+                phoneNumber = phoneNumberEditText.getText().toString();
+                address = addressEditText.getText().toString();
+                pan = panEditText.getText().toString();
+
+                if (name.equals("") || phoneNumber.equals("") || address.equals("") || pan.equals("")) {
+
+
+                    AlertHandling alertHandling = new AlertHandling(getContext());
+                    alertHandling.createAccountFragmentAlertHandling();
+                } else {
+                    CreateNewAccount c = new CreateNewAccount();
+                    c.setName(name);
+                    c.setPhoneNumber(phoneNumber);
+                    c.setAddress(address);
+                    c.setPan(pan);
+                    FragmentTransaction createAccountTwo = getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.loginFragment, new CreateNewAccountFragment2());
+                    createAccountTwo.commit();
+                }
+
             }
         });
         return v;

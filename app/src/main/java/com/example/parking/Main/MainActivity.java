@@ -1,7 +1,9 @@
 package com.example.parking.Main;
 
-import android.content.Intent;
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.parking.AlertHandling.AlertHandling;
 import com.example.parking.R;
 import com.example.parking.onBoarding.onBoardingFragment1;
 import com.example.parking.onBoarding.onBoardingFragment2;
@@ -24,10 +27,11 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BottomNavigation = findViewById(R.id.bottomNavigationMain);
+        this.BottomNavigation = findViewById(R.id.bottomNavigationMain);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main,new onBoardingFragment1());
         fragmentTransaction.commit();
         bottomNavigation();
+        Log.e(TAG, "MainActivity: " + getBaseContext().toString());
 
 
         onBoarding1 = new onBoardingFragment1();
@@ -113,7 +117,7 @@ public class MainActivity extends AppCompatActivity{
                     ellipse_15.setBackground(getDrawable(R.drawable.border));
                     ellipse_20.setBackground(getDrawable(R.drawable.border1));
                     ellipse_10.setBackground(getDrawable(R.drawable.border));
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main,new onBoardingFragment2());
+                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main, new onBoardingFragment2());
                     flag = 1;
                     NextButton.setVisibility(View.VISIBLE);
                     fragmentTransaction.commit();
@@ -123,4 +127,13 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (true) {
+            AlertHandling alertHandling = new AlertHandling(MainActivity.this);
+            alertHandling.exitWindowAlert();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

@@ -1,11 +1,15 @@
 package com.example.parking.splashScreen;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.parking.AlertHandling.AlertHandling;
 import com.example.parking.Main.MainActivity;
 import com.example.parking.R;
 import com.karumi.dexter.Dexter;
@@ -22,6 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
         runSplashScreen();
     }
     public void runSplashScreen(){
@@ -32,13 +37,15 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                     Thread.sleep(5000);
                     Dexter.withContext(getApplicationContext()).withPermissions(
-                                    Manifest.permission.INTERNET
+                                    Manifest.permission.INTERNET,
+                                    Manifest.permission.READ_EXTERNAL_STORAGE
 
 
                             )
                             .withListener(new MultiplePermissionsListener() {
                                 @Override
                                 public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                                    Log.e(TAG, "SplashScreenActivity: " + getBaseContext().toString());
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intent);
 
@@ -56,6 +63,17 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         });
         thread.start();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (true) {
+            AlertHandling alertHandling = new AlertHandling(SplashScreenActivity.this);
+            alertHandling.exitWindowAlert();
+        } else {
+            super.onBackPressed();
+        }
+
     }
 
     @Override
