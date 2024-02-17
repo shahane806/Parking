@@ -1,4 +1,4 @@
-package com.example.parking.splashScreen;
+package com.example.parking.Home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +11,10 @@ import com.example.parking.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SplashScreenFragment#newInstance} factory method to
+ * Use the {@link notificationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SplashScreenFragment extends Fragment {
+public class notificationFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +25,7 @@ public class SplashScreenFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SplashScreenFragment() {
+    public notificationFragment() {
         // Required empty public constructor
     }
 
@@ -35,11 +35,11 @@ public class SplashScreenFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SplashScreenFragment.
+     * @return A new instance of fragment notificationFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SplashScreenFragment newInstance(String param1, String param2) {
-        SplashScreenFragment fragment = new SplashScreenFragment();
+    public static notificationFragment newInstance(String param1, String param2) {
+        notificationFragment fragment = new notificationFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,9 +60,7 @@ public class SplashScreenFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_splash_screen, container, false);
-
-        return  view;
-
+        return inflater.inflate(R.layout.fragment_notification, container, false);
     }
+
 }
